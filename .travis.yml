@@ -3,7 +3,7 @@ dist: trusty
 language: minimal
 
 script:
-    - shellcheck "*/*.sh"
+    - bash -c "shellcheck */*.sh"
 
 if: |
     branch = master OR \
