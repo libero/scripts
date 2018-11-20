@@ -1,0 +1,10 @@
+dist: trusty
+
+language: minimal
+
+script:
+    - shellcheck "*/*.sh"
+
+if: |
+    branch = master OR \
+    type = pull_request
