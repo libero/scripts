@@ -2,6 +2,7 @@ language: bash
 
 script:
     - bash -c "shellcheck */*.sh"
+    - bash -c "find */ -name '*.sh' | xargs -I {} test -x {}"
 
 if: |
     branch = master OR \
