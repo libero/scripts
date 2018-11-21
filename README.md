@@ -1,5 +1,5 @@
-Libero dummy API
-================
+Libero common scripts
+=====================
 
 [![Build Status](https://travis-ci.com/libero/scripts.svg?branch=master)](https://travis-ci.com/libero/scripts)
 
