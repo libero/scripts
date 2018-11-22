@@ -1,0 +1,9 @@
+language: bash
+
+script:
+    - bash -xc "shellcheck */*.sh"
+    - bash -xc "find */ -name '*.sh' | xargs -I {} test -x {}"
+
+if: |
+    branch = master OR \
+    type = pull_request
