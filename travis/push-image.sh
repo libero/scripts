@@ -21,6 +21,9 @@ if [[ "$TRAVIS_BRANCH" = "master" && "$TRAVIS_PULL_REQUEST" = "false" ]]; then
     # tag temporarily as liberoadmin due to lack of `libero/` availability
     docker tag "libero/$project:$IMAGE_TAG" "liberoadmin/$project:$IMAGE_TAG"
     docker push "liberoadmin/$project:$IMAGE_TAG"
+    # push `latest` image
+    docker tag "libero/$project:$IMAGE_TAG" "liberoadmin/$project:latest"
+    docker push "liberoadmin/$project:latest"
 else
     echo "not pushing an image, we are not on master"
 fi
