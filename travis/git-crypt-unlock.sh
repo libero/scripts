@@ -7,11 +7,14 @@ if [ "$#" -ne 1 ]; then
     echo "Usage: $0 ENCRYPTED_KEY_FILE"
     echo "Example: $0 travis-ci.key.enc"
     echo
-    echo "ENCRYPTED_KEY_FILE is a file containing a git-crypt key, that has been encrypted using Travis CI's encrypt command:"
+    echo "ENCRYPTED_KEY_FILE is a file containing a git-crypt key, that has been encrypted using the 'travis encrypt-file' command:"
     echo "https://docs.travis-ci.com/user/encryption-keys/"
     echo
     echo "Relies on the following environment variables:"
-    echo "- TRAVIS_KEY, TRAVIS_IV"
+    echo "- TRAVIS_KEY"
+    echo "- TRAVIS_IV"
+    echo "These variables need to be populated with the build variables returned by the encryption command:"
+    echo "    TRAVIS_KEY=\$encrypted_a389905ea254_key TRAVIS_IV=\$encrypted_a389905ea254_iv .scripts/travis/git-crypt-unlock.sh travis-ci.key.enc"
     exit 1
 fi
 
