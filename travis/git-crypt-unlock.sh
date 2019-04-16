@@ -20,7 +20,7 @@ git_crypt_version=0.6.0
 git_crypt_sha=128817a63de17a5af03fe69241e453436c6c286c86dd37fb70ed9b3bf7171d7d
 
 openssl aes-256-cbc -K "$TRAVIS_KEY" -iv "$TRAVIS_IV" -in "$git_crypt_key" -out /tmp/git-crypt.key -d
-gpg --import git-crypt.key
+gpg --import /tmp/git-crypt.key
 curl -L "https://github.com/minrk/git-crypt-bin/releases/download/${git_crypt_version}/git-crypt" > git-crypt
 echo "$git_crypt_sha  git-crypt" | shasum -a 256 -c -
 chmod +x git-crypt
