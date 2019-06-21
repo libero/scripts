@@ -42,7 +42,7 @@ gpg --batch --gen-key foo
 
 #gpg --armor --export "${email}" > "travis-ci.pub"
 gpg --armor --export-secret-keys "${email}" > travis-ci.key
-git crypt add-gpg-user "${email} --no-commit
+git crypt add-gpg-user "${email}" --no-commit
 
 travis encrypt-file --com travis-ci.key
 rm travis-ci.key
