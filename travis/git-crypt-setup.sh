@@ -27,7 +27,7 @@ if ! which git-crypt; then
 fi
 
 export GNUPGHOME="$(mktemp -d)"
-cat >foo <<EOF
+cat >/tmp/key-generation.txt <<EOF
      %echo Generating a basic OpenPGP key
      Key-Type: RSA
      Key-Length: 2048
@@ -38,11 +38,12 @@ cat >foo <<EOF
      %commit
      %echo done
 EOF
-gpg --batch --gen-key foo
+gpg --batch --gen-key /tmp/key-generation.txt
 
 #gpg --armor --export "${email}" > "travis-ci.pub"
 gpg --armor --export-secret-keys "${email}" > travis-ci.key
-git crypt add-gpg-user "${email}" --no-commit
+git crypt add-gpg-user --no-commit "${email}"
 
 travis encrypt-file --com travis-ci.key
 rm travis-ci.key
+rm /tmp/key-generation.txt
