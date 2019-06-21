@@ -11,22 +11,23 @@ fi
 
 email="travis-ci@example.com"
 
-if ! which travis; then
+if ! travis -v; then
 	echo "Please install the \`travis\` cli"
 	exit 2
 fi
 
-if ! which gpg; then
+if ! gpg --version; then
 	echo "Please install \`gpg\`"
 	exit 3
 fi
 
-if ! which git-crypt; then
+if ! git-crypt version; then
 	echo "Please install the \`git-crypt\` binary"
 	exit 4
 fi
 
-export GNUPGHOME="$(mktemp -d)"
+GNUPGHOME="$(mktemp -d)"
+export GNUPGHOME
 cat >/tmp/key-generation.txt <<EOF
      %echo Generating a basic OpenPGP key
      Key-Type: RSA
