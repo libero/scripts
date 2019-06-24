@@ -40,7 +40,6 @@ cat >/tmp/key-generation.txt <<EOF
 EOF
 gpg --batch --gen-key /tmp/key-generation.txt
 
-#gpg --armor --export "${email}" > "travis-ci.pub"
 gpg --armor --export-secret-keys "${email}" > travis-ci.key
 git crypt add-gpg-user --no-commit "${email}"
 
