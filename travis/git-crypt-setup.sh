@@ -9,8 +9,6 @@ if [ "$#" -ne 0 ]; then
 	exit 1
 fi
 
-email="travis-ci@example.com"
-
 if ! travis -v; then
 	echo "Please install the \`travis\` cli"
 	exit 2
@@ -26,6 +24,7 @@ if ! git-crypt version; then
 	exit 4
 fi
 
+email="travis-ci@example.com"
 GNUPGHOME="$(mktemp -d)"
 export GNUPGHOME
 cat >/tmp/key-generation.txt <<EOF
