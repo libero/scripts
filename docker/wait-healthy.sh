@@ -11,7 +11,7 @@ container="${1}"
 timeout="${2:-30}"
 target="healthy"
 
-timeout "$timeout" bash << EOT
+timeout --foreground "$timeout" bash << EOT
     while true
     do
     current=\$(docker inspect "${container}" | jq -r '.[0].State.Health.Status')
