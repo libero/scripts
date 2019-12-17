@@ -19,7 +19,7 @@ jobs:
         with:
           submodules: true
 
-      - name: Build Docker images
+      - name: Shell scripts
         run: |
           bash -xc "shellcheck */*.sh"
           bash -xc "find */ -name '*.sh' | xargs -I {} test -x {}"
