@@ -1,7 +1,7 @@
 Libero common scripts
 =====================
 
-[![Build Status](https://travis-ci.com/libero/scripts.svg?branch=master)](https://travis-ci.com/libero/scripts)
+[![Build Status](https://github.com/libero/scripts/workflows/CI/badge.svg?branch=master)](https://github.com/libero/scripts/actions?query=branch%3Amaster+workflow%3ACI)
 
 These common scripts are used in Libero projects builds.
 
