@@ -13,17 +13,18 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
+DOCKER_REGISTRY="${DOCKER_REGISTRY:-}"
 project="$1"
 
 if [[ "$GITHUB_REF" = "refs/head/master" ]]; then
-    echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin 
+    echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin "${DOCKER_REGISTRY}"
 
     # tag temporarily as liberoadmin due to lack of `libero/` availability
-    docker tag "libero/$project:$IMAGE_TAG" "liberoadmin/$project:$IMAGE_TAG"
-    docker push "liberoadmin/$project:$IMAGE_TAG"
+    docker tag "libero/$project:$IMAGE_TAG" "${DOCKER_REGISTRY}liberoadmin/$project:$IMAGE_TAG"
+    docker push "${DOCKER_REGISTRY}liberoadmin/$project:$IMAGE_TAG"
     # push `latest` image
-    docker tag "libero/$project:$IMAGE_TAG" "liberoadmin/$project:latest"
-    docker push "liberoadmin/$project:latest"
+    docker tag "libero/$project:$IMAGE_TAG" "${DOCKER_REGISTRY}liberoadmin/$project:latest"
+    docker push "${DOCKER_REGISTRY}liberoadmin/$project:latest"
 else
     echo "not pushing an image, we are not on master"
 fi
