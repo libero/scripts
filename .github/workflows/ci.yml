@@ -24,5 +24,4 @@ jobs:
           bash -xc "find */ -name '*.sh' | xargs -I {} test -x {}"
 
       - name: Tests
-        run: |
-          bash -xc "tests/*.sh"
+        run: find tests -name '*.sh' | xargs -I {} bash -xc {}
