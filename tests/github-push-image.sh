@@ -11,6 +11,8 @@ docker run --detach --publish 5000:5000 --rm --name registry registry:2
 
 docker pull busybox
 docker tag busybox libero/my-dummy-project:12345678
+
+echo "Real GITHUB_REF: ${GITHUB_REF}"
 GITHUB_REF=refs/head/master \
 DOCKER_REGISTRY=localhost:5000/ \
 DOCKER_USERNAME=foo \
