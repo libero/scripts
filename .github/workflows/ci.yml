@@ -9,7 +9,7 @@ on:
 
 jobs:
 
-  static-checks:
+  checks:
 
     runs-on: ubuntu-latest
 
@@ -18,7 +18,11 @@ jobs:
         with:
           submodules: true
 
-      - name: Shell scripts
+      - name: Static checks
         run: |
           bash -xc "shellcheck */*.sh"
           bash -xc "find */ -name '*.sh' | xargs -I {} test -x {}"
+
+      - name: Tests
+        run: |
+          bash -xc "tests/*.sh"
