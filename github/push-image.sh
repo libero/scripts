@@ -16,7 +16,7 @@ fi
 DOCKER_REGISTRY="${DOCKER_REGISTRY:-}"
 project="$1"
 
-if [[ "$GITHUB_REF" = "refs/head/master" ]]; then
+if [[ "$GITHUB_REF" = "refs/heads/master" ]]; then
     echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin "${DOCKER_REGISTRY}"
 
     # tag temporarily as liberoadmin due to lack of `libero/` availability
