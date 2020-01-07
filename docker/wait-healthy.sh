@@ -15,6 +15,9 @@ timeout --foreground "$timeout" bash << EOT
     while true
     do
     current=\$(docker inspect "${container}" | jq -r '.[0].State.Health.Status')
+    if [ "\$current" == "null" ]; then
+        break
+    fi
     echo "${container} is in state: \${current}"
     if [ "\$current" == "$target" ]; then
         break
