@@ -11,6 +11,7 @@ jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - run: make setup
       - run: make test-static
       - run: make test-image_push
