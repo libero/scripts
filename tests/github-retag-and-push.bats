@@ -68,6 +68,7 @@ teardown () {
     run github/retag-and-push.sh my-dummy-project 12345678
     [ "$status" -eq 1 ]
     [ "${lines[-2]}" = "refs/tags/1.2.43 is neither a branch head or valid semver tag" ]
+    [ "${lines[-1]}" = "No image tagging or pushing was performed because of this." ]
 }
 
 @test "invalid semver" {
