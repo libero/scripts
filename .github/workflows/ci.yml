@@ -34,7 +34,7 @@ jobs:
           npm install bats
           node_modules/bats/bin/bats -r tests/
         env:
-          DOCKER_REGISTRY: "registry:5000/"
+          DOCKER_REGISTRY: "localhost:5000/"
           DOCKER_USERNAME: "foo"
           DOCKER_PASSWORD: "bar"
           
