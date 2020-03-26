@@ -14,13 +14,12 @@ teardown () {
 @test "valid other branch" {
     export GITHUB_REF=refs/heads/foobar
     export GITHUB_SHA=12345678
-    run docker tag busybox libero/my-dummy-project:12345678
-    run github/retag-and-push.sh my-dummy-project 12345678
+    run docker tag busybox libero/otherbranch:12345678
+    run github/retag-and-push.sh otherbranch 12345678
     [ "$status" -eq 0 ]
-    run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:foobar-12345678
+    run docker pull ${DOCKER_REGISTRY}liberoadmin/otherbranch:foobar-12345678
     [ "$status" -eq 0 ]
-    run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:latest
-    echo "output = ${output}"
+    run docker pull ${DOCKER_REGISTRY}liberoadmin/otherbranch:latest
     [ "$status" -eq 1 ]
 }
 
