@@ -1,12 +1,7 @@
 #!/usr/bin/env bats
 
-# Place the following before an assertion to the the output
+# Place the following before an assertion to debug the output
 # echo "output = ${output}"
-
-teardown () {
-    unset GITHUB_SHA
-    unset GITHUB_REF
-}
 
 @test "valid master tagging" {
     export GITHUB_REF=refs/heads/master
