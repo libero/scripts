@@ -31,7 +31,7 @@ jobs:
 
       - name: Tests
         run: |
-          npm install -g bats
+          npm install bats
           bats -r tests/
         env:
           DOCKER_REGISTRY: ${{ job.services.mock-registry.ports['5000'] }}/
