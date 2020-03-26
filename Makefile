@@ -3,7 +3,7 @@ BATS := "node_modules/bats/bin/bats"
 setup: install-deps launch_registry
 
 install-deps:
-	npm install
+	npm install bats@1.x
 	docker pull busybox
 
 launch_registry:
