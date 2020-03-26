@@ -31,6 +31,21 @@ git submodule update --remote
 
 and commit the result.
 
+
+Developing
+----------
+
+If you add a shellscript consider using [bats](https://github.com/bats-core/bats-core) to add tests for it.
+
+To run tests locally:
+
+```sh
+make setup
+make test
+make teardown
+```
+
+
 Getting help
 ------------
 
