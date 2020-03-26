@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+echo "WARNING: push-image.sh does not conform with Libero ADR#9"
+echo "         Use retag-and-push.sh instead."
+
 if [ "$#" -ne 1 ]; then
     echo "Pushes a local container image to Docker Hub"
     echo 
