@@ -37,3 +37,17 @@ Getting help
 - Report a bug or request a feature on [GitHub](https://github.com/libero/libero/issues/new/choose).
 - Ask a question on the [Libero Community Slack](https://libero-community.slack.com/).
 - Read the [code of conduct](https://libero.pub/code-of-conduct).
+
+Developing
+----------
+
+If you add a shell script please add tests using [bats](https://github.com/bats-core/bats-core).
+
+To run bats tests locally:
+
+```sh
+npm install -g bats
+tests/run-locally.sh
+```
+
+`run-locally.sh` is used to spin up a dummy registry for use by the docker push scripts.
