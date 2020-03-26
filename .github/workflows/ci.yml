@@ -13,6 +13,12 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    services:
+      mock-registry:
+        image: registry:2
+        ports: 
+          - 5000:5000
+
     steps:
       - uses: actions/checkout@v1
         with:
@@ -25,4 +31,10 @@ jobs:
 
       - name: Tests
         run: |
-          bash -xc "tests/*.sh"
+          npm install -g bats
+          bats -r tests/
+        env:
+          DOCKER_REGISTRY: ${{ job.services.mock-registry.ports['5000'] }}/
+          DOCKER_USERNAME: foo
+          DOCKER_PASSWORD: bar
+          
