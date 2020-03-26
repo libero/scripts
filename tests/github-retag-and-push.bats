@@ -32,7 +32,6 @@ teardown () {
     run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:master-12345678
     [ "$status" -eq 0 ]
     run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:latest
-    echo "output = ${output}"
     [ "$status" -eq 0 ]
 }
 
@@ -45,7 +44,6 @@ teardown () {
     run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:master-12345678
     [ "$status" -eq 0 ]
     run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:latest
-    echo "output = ${output}"
     [ "$status" -eq 0 ]
 }
 
@@ -54,16 +52,12 @@ teardown () {
     export GITHUB_SHA=12345678
     run docker tag busybox libero/my-dummy-project:master-12345678
     run github/retag-and-push.sh my-dummy-project 12345678
-    echo "output = ${output}"
     [ "$status" -eq 0 ]
     run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:1
-    echo "output = ${output}"
     [ "$status" -eq 0 ]
     run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:1.2
-    echo "output = ${output}"
     [ "$status" -eq 0 ]
     run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:1.2.43
-    echo "output = ${output}"
     [ "$status" -eq 0 ]
 }
 
@@ -72,7 +66,6 @@ teardown () {
     export GITHUB_SHA=12345678
     run docker tag busybox libero/my-dummy-project:master-12345678
     run github/retag-and-push.sh my-dummy-project 12345678
-    echo "output = ${output}"
     [ "$status" -eq 1 ]
     [ "${lines[4]}" = "refs/tags/1.2.43 is neither a branch head or valid semver tag" ]
 }

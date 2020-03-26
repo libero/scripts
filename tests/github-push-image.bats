@@ -15,7 +15,6 @@ teardown () {
     export IMAGE_TAG=12345678
     run docker tag busybox libero/my-dummy-project:12345678
     run github/push-image.sh my-dummy-project
-    echo "output = ${output}"
     [ "$status" -eq 0 ]
     run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:12345678
     [ "$status" -eq 0 ]
