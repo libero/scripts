@@ -8,21 +8,11 @@ on:
       - master
 
 jobs:
-
   checks:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v1
-        with:
-          submodules: true
-
-      - name: Static checks
-        run: |
-          bash -xc "shellcheck */*.sh"
-          bash -xc "find */ -name '*.sh' | xargs -I {} test -x {}"
-
-      - name: Tests
-        run: |
-          bash -xc "tests/*.sh"
+      - run: make setup
+      - run: make test-static
+      - run: make test-image-push
+      - run: make teardown
