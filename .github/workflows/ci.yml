@@ -15,3 +15,4 @@ jobs:
       - run: make setup
       - run: make test-static
       - run: make test-image-push
+      - run: make teardown
