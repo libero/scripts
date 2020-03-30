@@ -5,6 +5,7 @@ setup: install-deps launch-registry
 install-deps:
 	npm install bats@1.x
 	docker pull busybox
+	command shellcheck || echo "  please run :	'apt install shellcheck'"; exit 1
 
 launch-registry:
 	docker run --detach --publish 5000:5000 --rm --name registry registry:2

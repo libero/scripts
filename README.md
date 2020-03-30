@@ -40,6 +40,7 @@ If you add a shellscript consider using [bats](https://github.com/bats-core/bats
 To run tests locally:
 
 ```sh
+sudo apt install shellcheck
 make setup
 make test
 make teardown
