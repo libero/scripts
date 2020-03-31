@@ -39,6 +39,8 @@ If you add a shellscript consider using [bats](https://github.com/bats-core/bats
 
 To run tests locally:
 
+- install [shellcheck](https://github.com/koalaman/shellcheck#user-content-installing) (`apt/brew/yum install shellcheck`)
+
 ```sh
 make setup
 make test
