@@ -17,7 +17,7 @@ teardown () {
     run docker tag busybox libero/otherbranch:12345678
     run github/retag-and-push.sh otherbranch 12345678
     [ "$status" -eq 0 ]
-    run docker pull ${DOCKER_REGISTRY}liberoadmin/otherbranch:foobar-12345678
+    docker images | grep -P "${DOCKER_REGISTRY}liberoadmin/otherbranch\s*foobar-12345678-\d{8}\.\d{4}"
     [ "$status" -eq 0 ]
     run docker pull ${DOCKER_REGISTRY}liberoadmin/otherbranch:latest
     [ "$status" -eq 1 ]
@@ -29,19 +29,19 @@ teardown () {
     run docker tag busybox libero/my-dummy-project:12345678
     run github/retag-and-push.sh my-dummy-project 12345678
     [ "$status" -eq 0 ]
-    run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:master-12345678
+    docker images | grep -P "${DOCKER_REGISTRY}liberoadmin/my-dummy-project\s*master-12345678-\d{8}\.\d{4}"
     [ "$status" -eq 0 ]
     run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:latest
     [ "$status" -eq 0 ]
 }
 
 @test "rename liberoadmin to libero" {
-    export GITHUB_REF=refs/heads/master
+    export GITHUB_REF=refs/tags/v1.2.43
     export GITHUB_SHA=12345678
     run docker tag busybox liberoadmin/my-dummy-project:12345678
     run github/retag-and-push.sh my-dummy-project 12345678
     [ "$status" -eq 0 ]
-    run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:master-12345678
+    run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:1
     [ "$status" -eq 0 ]
     run docker pull ${DOCKER_REGISTRY}liberoadmin/my-dummy-project:latest
     [ "$status" -eq 0 ]
