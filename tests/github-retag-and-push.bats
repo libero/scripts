@@ -11,25 +11,25 @@ teardown () {
 }
 
 
-@test "valid other branch" {
+@test "misc branch, shorten sha" {
     export GITHUB_REF=refs/heads/foobar
-    export GITHUB_SHA=1234567890ab
+    export GITHUB_SHA=shortsha-butwithlongbitpresent
     run docker tag busybox libero/otherbranch:123
     run github/retag-and-push.sh otherbranch 123
     [ "$status" -eq 0 ]
-    docker images | grep -P "${DOCKER_REGISTRY}liberoadmin/otherbranch\s*foobar-12345678-\d{8}\.\d{4}\s"
-    [ "$status" -eq 0 ]
-    docker images | grep -P "${DOCKER_REGISTRY}liberoadmin/otherbranch\s*foobar-12345678\s"
+    run docker pull "${DOCKER_REGISTRY}liberoadmin/otherbranch:foobar-shortsha"
     [ "$status" -eq 0 ]
     run docker pull ${DOCKER_REGISTRY}liberoadmin/otherbranch:latest
     [ "$status" -eq 1 ]
 }
 
-@test "valid master tagging" {
+@test "valid master tagging w/wo timestamp" {
     export GITHUB_REF=refs/heads/master
     export GITHUB_SHA=1234567890ab
     run docker tag busybox libero/my-dummy-project:123
     run github/retag-and-push.sh my-dummy-project 123
+    [ "$status" -eq 0 ]
+    run docker pull "${DOCKER_REGISTRY}liberoadmin/my-dummy-project:master-12345678"
     [ "$status" -eq 0 ]
     docker images | grep -P "${DOCKER_REGISTRY}liberoadmin/my-dummy-project\s*master-12345678-\d{8}\.\d{4}"
     [ "$status" -eq 0 ]
