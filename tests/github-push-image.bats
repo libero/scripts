@@ -3,7 +3,7 @@
 # Place the following before an assertion to debug the output
 # echo "output = ${output}"
 
-@test "valid master tagging" {
+@test "legacy master tagging" {
     export GITHUB_REF=refs/heads/master
     export IMAGE_TAG=12345678
     run docker tag busybox libero/my-dummy-project:12345678

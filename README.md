@@ -47,6 +47,7 @@ make test
 make teardown
 ```
 
+NOTE: some tests grep `docker images` output. If in doubt use `docker system prune --all` to ensure a clean test run.
 
 Getting help
 ------------
