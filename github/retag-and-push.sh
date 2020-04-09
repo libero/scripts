@@ -31,7 +31,7 @@ fi
 if [[ "$GITHUB_REF" == "refs/heads"* ]]; then
     # push `branch-sha` tagged image
     branch="${GITHUB_REF/refs\/heads\//}"
-    timestamp=$(date +%Y%m%d.%H%M)
+    timestamp=$(date --utc +%Y%m%d.%H%M)
     short_sha=${GITHUB_SHA:0:8}
     docker tag "$input_image" "${name}:${branch}-${short_sha}-${timestamp}"
     docker push "${name}:${branch}-${short_sha}-${timestamp}"
